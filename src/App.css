@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+     .App {
+       @apply bg-background-primary;
+     }
+   }
+
+.App{
+     display: grid;
+   
+     grid-template-columns: 72px auto;
+     grid-template-rows: 52px auto; /*Altura x Largura da Linha*/
+   
+     /* SideNav -> SN */
+     /* Header -> HD */
+     /* Content Page */
+     grid-template-areas: 
+       "SN HD"
+       "SN CP"
+     ;
+     width: 100vw;
+     height: 100vh;
+}
