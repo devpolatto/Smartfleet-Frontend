@@ -30,7 +30,7 @@ body{
 
 .grid-sidenav {
   grid-area: SN;
-  border: 1px solid red;
+  
 }
 
 .grid-header {
@@ -39,7 +39,7 @@ body{
   width: 100%;
   height: auto;
 
-  border: 1px solid blue;
+ 
 }
 
 .grid-content-page {
