@@ -44,4 +44,6 @@ body{
 
 .grid-content-page {
   grid-area: CP;
+
+  padding: 16px 16px;
 }
