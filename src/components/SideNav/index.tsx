@@ -24,7 +24,7 @@ const SideNav: React.FC = () => {
     <p className=' leading-4 text-[10px]'> Carros </p>
      </div>
 
-     <div className='flex flex-col items-center w-[68px] h-[62px]   text-white justify-center'>
+    <div className='flex flex-col items-center w-[68px] h-[62px]   text-white justify-center'>
      <LocalGasStationRoundedIcon sx={{ fontSize: 24 }} /> 
      <p className=' leading-4 text-[10px]'> Combustível </p>
     </div>
