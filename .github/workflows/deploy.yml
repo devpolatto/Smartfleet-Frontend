@@ -1,4 +1,6 @@
 on:
+  push:
+    branches: [development]
   pull_request_review:
     types: [submite]
     branches: [development]
