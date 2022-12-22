@@ -1,6 +1,6 @@
 import {instanceAxios} from '../axiosConfig'
 
-interface Fine {
+export interface Fine {
      id: string;
      status: string;
      dataInfracao: string;
