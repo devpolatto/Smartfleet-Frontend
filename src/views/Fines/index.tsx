@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, TextField } from '@mui/material';
 
-import DataTable from '../../components/FinesTable'
+import DataTable from '../../components/SharedTable'
 
 const Fines: React.FC = () => {
   return (
@@ -23,7 +23,7 @@ const Fines: React.FC = () => {
           <Button variant='outlined'>Últimos 6 meses</Button>
         </div>
       </div>
-      <DataTable/>
+      <DataTable rows={[]} isLoading={true} totalCount={0}/>
     </div>
   )
 }
