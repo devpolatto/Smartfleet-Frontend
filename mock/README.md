@@ -1,4 +1,4 @@
-#Runing Json-server
+# Runing Json-server
 
 ### Install Json-server
 `npm i json-server -D`
