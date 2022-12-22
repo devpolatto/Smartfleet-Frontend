@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite --host",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "dev-mock": "vite --host & json-server -w -p 3333 ./mock/database.json"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",

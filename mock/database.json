@@ -1,0 +1,259 @@
+{
+     "multas": [
+          {
+               "id": "1234", 
+               "status": "aberto", 
+               "dataInfracao": "17/10/2022 16:41:00", 
+               "situacao": "Notificado", 
+               "cidade": "Recife", 
+               "codigo": "484848", 
+               "valorBoleto": "R$200,13", 
+               "vencimentoBoleto": "07/12/2022", 
+               "placa": "BE05C75"
+          },
+          {
+               "id": "1235", 
+               "status": "aberto", 
+               "dataInfracao": "17/10/2022 16:41:00", 
+               "situacao": "Notificado", 
+               "cidade": "Recife", 
+               "codigo": "484849", 
+               "valorBoleto": "R$300,13", 
+               "vencimentoBoleto": "07/12/2022", 
+               "placa": "BE05C45"
+          },
+          {
+               "id": "1236", 
+               "status": "aberto", 
+               "dataInfracao": "17/10/2022 16:41:00", 
+               "situacao": "Notificado", 
+               "cidade": "Recife", 
+               "codigo": "484850", 
+               "valorBoleto": "R$104,13", 
+               "vencimentoBoleto": "07/12/2022", 
+               "placa": "BE05C73"
+          },
+          {
+               "id": "1237", 
+               "status": "aberto", 
+               "dataInfracao": "17/10/2022 16:41:00", 
+               "situacao": "Notificado", 
+               "cidade": "Recife", 
+               "codigo": "484851", 
+               "valorBoleto": "R$103,13", 
+               "vencimentoBoleto": "07/12/2022", 
+               "placa": "BE05C34"
+          },
+          {
+               "id": "1434", 
+               "status": "aberto", 
+               "dataInfracao": "17/10/2022 16:41:00", 
+               "situacao": "Notificado", 
+               "cidade": "Recife", 
+               "codigo": "484852", 
+               "valorBoleto": "R$175,13", 
+               "vencimentoBoleto": "07/12/2022", 
+               "placa": "BE05C78"
+          },
+          {
+               "id": "1000", 
+               "status": "aberto", 
+               "dataInfracao": "17/10/2022 16:41:00", 
+               "situacao": "Notificado", 
+               "cidade": "Recife", 
+               "codigo": "484853", 
+               "valorBoleto": "R$198,13", 
+               "vencimentoBoleto": "07/12/2022", 
+               "placa": "BE05C11"
+          },
+          {
+               "id": "1001", 
+               "status": "aberto", 
+               "dataInfracao": "17/10/2022 16:41:00", 
+               "situacao": "Notificado", 
+               "cidade": "Recife", 
+               "codigo": "484853", 
+               "valorBoleto": "R$198,13", 
+               "vencimentoBoleto": "07/12/2022", 
+               "placa": "BE05C11"
+          },
+          {
+               "id": "1002", 
+               "status": "aberto", 
+               "dataInfracao": "17/10/2022 16:41:00", 
+               "situacao": "Notificado", 
+               "cidade": "Recife", 
+               "codigo": "484853", 
+               "valorBoleto": "R$198,13", 
+               "vencimentoBoleto": "07/12/2022", 
+               "placa": "BE05C11"
+          },
+          {
+               "id": "1003", 
+               "status": "aberto", 
+               "dataInfracao": "17/10/2022 16:41:00", 
+               "situacao": "Notificado", 
+               "cidade": "Recife", 
+               "codigo": "484853", 
+               "valorBoleto": "R$198,13", 
+               "vencimentoBoleto": "07/12/2022", 
+               "placa": "BE05C11"
+          },
+          {
+               "id": "1004", 
+               "status": "aberto", 
+               "dataInfracao": "17/10/2022 16:41:00", 
+               "situacao": "Notificado", 
+               "cidade": "Recife", 
+               "codigo": "484853", 
+               "valorBoleto": "R$198,13", 
+               "vencimentoBoleto": "07/12/2022", 
+               "placa": "BE05C11"
+          },
+          {
+               "id": "1005", 
+               "status": "aberto", 
+               "dataInfracao": "17/10/2022 16:41:00", 
+               "situacao": "Notificado", 
+               "cidade": "Recife", 
+               "codigo": "484853", 
+               "valorBoleto": "R$198,13", 
+               "vencimentoBoleto": "07/12/2022", 
+               "placa": "BE05C11"
+          },
+          {
+               "id": "1006", 
+               "status": "aberto", 
+               "dataInfracao": "17/10/2022 16:41:00", 
+               "situacao": "Notificado", 
+               "cidade": "Recife", 
+               "codigo": "484853", 
+               "valorBoleto": "R$198,13", 
+               "vencimentoBoleto": "07/12/2022", 
+               "placa": "BE05C11"
+          },
+          {
+               "id": "1007", 
+               "status": "Fechado", 
+               "dataInfracao": "17/10/2022 16:41:00", 
+               "situacao": "Notificado", 
+               "cidade": "Recife", 
+               "codigo": "484853", 
+               "valorBoleto": "R$198,13", 
+               "vencimentoBoleto": "07/12/2022", 
+               "placa": "BE05C11"
+          },
+          {
+               "id": "1008", 
+               "status": "aberto", 
+               "dataInfracao": "17/10/2022 16:41:00", 
+               "situacao": "Notificado", 
+               "cidade": "Recife", 
+               "codigo": "484853", 
+               "valorBoleto": "R$198,13", 
+               "vencimentoBoleto": "07/12/2022", 
+               "placa": "BE05C11"
+          },
+          {
+               "id": "1009", 
+               "status": "aberto", 
+               "dataInfracao": "17/10/2022 16:41:00", 
+               "situacao": "Notificado", 
+               "cidade": "Recife", 
+               "codigo": "484853", 
+               "valorBoleto": "R$198,13", 
+               "vencimentoBoleto": "07/12/2022", 
+               "placa": "BE05C11"
+          },
+          {
+               "id": "1010", 
+               "status": "Fechado", 
+               "dataInfracao": "17/10/2022 16:41:00", 
+               "situacao": "Notificado", 
+               "cidade": "Recife", 
+               "codigo": "484853", 
+               "valorBoleto": "R$198,13", 
+               "vencimentoBoleto": "07/12/2022", 
+               "placa": "BE05C11"
+          },
+          {
+               "id": "1011", 
+               "status": "aberto", 
+               "dataInfracao": "17/10/2022 16:41:00", 
+               "situacao": "Notificado", 
+               "cidade": "Recife", 
+               "codigo": "484853", 
+               "valorBoleto": "R$128,13", 
+               "vencimentoBoleto": "07/12/2022", 
+               "placa": "BE05C11"
+          },
+          {
+               "id": "1012", 
+               "status": "aberto", 
+               "dataInfracao": "17/10/2022 16:41:00", 
+               "situacao": "Notificado", 
+               "cidade": "Recife", 
+               "codigo": "484043", 
+               "valorBoleto": "R$168,13", 
+               "vencimentoBoleto": "07/12/2022", 
+               "placa": "BE05C31"
+          },
+          {
+               "id": "1013", 
+               "status": "aberto", 
+               "dataInfracao": "17/10/2022 16:41:00", 
+               "situacao": "Pendente", 
+               "cidade": "Recife", 
+               "codigo": "4848636", 
+               "valorBoleto": "R$199,13", 
+               "vencimentoBoleto": "07/12/2022", 
+               "placa": "BE05487"
+          },
+          {
+               "id": "1014", 
+               "status": "fechado", 
+               "dataInfracao": "17/10/2022 16:41:00", 
+               "situacao": "Pendente", 
+               "cidade": "Recife", 
+               "codigo": "4848636", 
+               "valorBoleto": "R$563,13", 
+               "vencimentoBoleto": "07/12/2022", 
+               "placa": "BE05488"
+          },
+          {
+               "id": "1015", 
+               "status": "aberto", 
+               "dataInfracao": "17/10/2022 16:41:00", 
+               "situacao": "Pendente", 
+               "cidade": "Recife", 
+               "codigo": "4848636", 
+               "valorBoleto": "R$199,13", 
+               "vencimentoBoleto": "07/12/2022", 
+               "placa": "BE05490"
+          },
+          {
+               "id": "1016", 
+               "status": "aberto", 
+               "dataInfracao": "17/10/2022 16:41:00", 
+               "situacao": "Pendente", 
+               "cidade": "Recife", 
+               "codigo": "4848636", 
+               "valorBoleto": "R$199,13", 
+               "vencimentoBoleto": "07/12/2022", 
+               "placa": "BE05491"
+          },
+          {
+               "id": "1017", 
+               "status": "aberto", 
+               "dataInfracao": "17/10/2022 16:41:00", 
+               "situacao": "Pendente", 
+               "cidade": "Recife", 
+               "codigo": "4848636", 
+               "valorBoleto": "R$199,13", 
+               "vencimentoBoleto": "07/12/2022", 
+               "placa": "BE05492"
+          }
+          
+     ]
+}
+
