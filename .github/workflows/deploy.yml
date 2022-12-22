@@ -29,18 +29,18 @@ jobs:
             devpolatto/smartfleet:latest
     
   CD:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout the files
-      uses: actions/checkout@v3
+    runs-on: self-hosted
 
-    - name: Copy files with SSH
-      uses: easingthemes/ssh-deploy@main
-      env:
-        SSH_PRIVATE_KEY: ${{secrets.DEPLOY_KEY}}
-        ARGS: "-rltgoDzvO --delete"
-        SOURCE: "./"
-        REMOTE_HOST: ${{secrets.DEPLOY_HOST_IP}}
-        REMOTE_USER: ${{secrets.DEPLOY_USERNAME}}
-        TARGET: ${{secrets.DEPLOY_FOLDER}}
-        EXCLUDE: "/dist/, /node_modules/, **.env, rebuild_app.sh, watcher.sh"
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run build --if-present
