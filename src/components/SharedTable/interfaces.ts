@@ -1,27 +1,16 @@
 export type Order = 'asc' | 'desc';
-
-export interface Data {
-     id: string;
-     status: string;
-     dataInfracao: string;
-     situacao: string;
-     cidade: string
-     codigo: string;
-     valorBoleto: string;
-     dataVencimentoBoleto: string;
-     placa: string;
-}
+import { Fine } from '../../api/services/FinesService'
 
 export interface HeadColumn {
      disablePadding: boolean;
-     id: keyof Data;
+     id: keyof Fine;
      label: string;
      numeric: boolean;
 }
 
 export interface EnhancedTableProps {
      numSelected: number;
-     onRequestSort: (event: React.MouseEvent<unknown>, property: keyof Data) => void;
+     onRequestSort: (event: React.MouseEvent<unknown>, property: keyof Fine) => void;
      onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
      order: Order;
      orderBy: string;
