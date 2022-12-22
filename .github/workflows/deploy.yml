@@ -1,7 +1,6 @@
 on:
-  push:
-    branches: [development]
   pull_request:
+    types: [synchronize]
     branches: [development]
     
 jobs:
