@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { responseIntercepetor,  erroIntercepetor} from './interceptors';
 
-const URL = 'http://localhost:3333';
+const URL = 'http://52.71.81.54:3333';
 // const URL = process.env.REACT_APP_BASE_URL
 
 const instanceAxios = axios.create({
