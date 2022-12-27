@@ -42,3 +42,20 @@ http://localhost:5173/
 # Fines
 http://localhost:5173/fines
 ```
+
+### Docker
+
+The application can run in a container using the Dockerfile. To run the application, first create the image as follows:
+```
+docker build -t <user>/<image_name>:version .
+```
+
+The construction of the image executes a Build of the react application, which runs on port 80. I emphasize that the execution of the following command sets the API address as the default, which is the ip of the json-server moked data.
+```
+docker container run -d -p 8080:80 --name reactapp <user>/<image>:latest
+```
+
+To make the application communicate the correct API address, must pass the following argument when building the image:
+```
+docker build --build-arg API=https://api.host.com:xxxx -t <user>/<image_name>:version .
+```
