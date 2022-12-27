@@ -45,18 +45,16 @@ const SideNav: React.FC = () => {
     </div>
     </div>
 
-    <div className=' absolute bottom-0 flex flex-col gap-4 items-center'>
-    <div className='flex flex-col items-center w-[68px] h-[62px] mt-12  text-white justify-center'>
-    <AnnouncementRoundedIcon sx={{ fontSize: 24 }}/> 
-    <p className=' text-[10px]'>  13 </p> 
-    </div>
-
+    <div className=' absolute bottom-0 flex flex-col gap-1 items-center'>
+    
     <div className='w-[59px] border'></div>
     
-    <div className='flex flex-col items-center w-[68px] h-[62px]  text-white justify-center'> 
+    <div className='flex flex-col items-center w-[68px] h-[62px] mb-1 text-white justify-center'> 
       <SettingsRoundedIcon sx={{ fontSize: 24 }}/>
       <p className= 'text-[10px]'></p>
       </div> 
+
+  
 
       </div>
     

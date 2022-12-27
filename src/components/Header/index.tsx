@@ -6,7 +6,8 @@ import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 
 const Header: React.FC = () => {
   return(
-     <div className='grid-header font-sans bg-background-primary flex justify-between items-center border-spacing-1 px-4'>
+     <div className='grid-header font-sans bg-background-primary flex justify-between items-center border border-spacing-1 px-4'>
+  
 
         <div>
           <div className='flex flex-wrap justify-end '>
@@ -20,10 +21,11 @@ const Header: React.FC = () => {
               
             <div className='text-blue-500  '>
               <AccountCircleRoundedIcon sx={{ fontSize: 24 }}/>
-              {/* </div> */}
             </div>
-        </div>
+       </div>
     </div>
+    
+
     );
 }
 export default Header; 
