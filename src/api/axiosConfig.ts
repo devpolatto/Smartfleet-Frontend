@@ -1,9 +1,9 @@
 import axios from 'axios';
+import { API } from '../resources/env';
 
 import { responseIntercepetor,  erroIntercepetor} from './interceptors';
 
-const URL = 'http://52.71.81.54:3333';
-// const URL = process.env.REACT_APP_BASE_URL
+const URL = import.meta.env.DEV ? API : ''
 
 const instanceAxios = axios.create({
      baseURL: URL
