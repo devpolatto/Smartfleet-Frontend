@@ -1,18 +1,21 @@
+# ======================= Node ============================
 FROM node:current-alpine3.17 AS builder
-# Set working directory
-# set working directory
+
 RUN mkdir /usr/app
 
-#copy all files from current directory to docker
+ARG API=http://localhost:3333
+
 COPY . /usr/app
 WORKDIR /usr/app
 
-# install and cache app dependencies
 RUN npm install
+
+ENV VITE_API=${API}
 
 # add `/usr/src/app/node_modules/.bin` to $PATH
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
 
+# ======================= Nginx ============================
 RUN npm run build
 
 FROM nginx:alpine
