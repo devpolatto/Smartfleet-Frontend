@@ -1,48 +1,15 @@
 import {instanceAxios} from '../axiosConfig'
 
-export interface Fine {
-     id: string;
-     status: string;
-     dataInfracao: string;
-     situacao: string;
-     cidade: string
-     codigo: string;
-     valorBoleto: string;
-     dataVencimentoBoleto: string;
-     placa: string;
-}
+import { FineInterface, TotalFinesCountInterface } from '../../@types'
 
-export interface FineDetails extends Fine {
-     descricao: string; 
-     horaInfracao: string; 
-     apCondutorDataVencimento: string; 
-     endereco: string; 
-     artigo: string; 
-     nroProcessamentoMG: string; 
-     valor: string; 
-     codigoBarras: string; 
-     orgao: string; 
-     renavam: string; 
-     ait: string; 
-     id_situacao: string; 
-     pontuacao: string; 
-     velocidadeMedida: string; 
-     velocidadeRegulamentada: string; 
-     autoInfracao2: string; 
-     uf: string; 
-     datahoraInfracaoUTC: string; 
-     nicAutoInfracaoOriginario: string; 
-     aiipmulta: string; 
-}
+const getAllFinesByTime = async (
+     page = 1, 
+     plateFilter = '', 
+     initial_date = '',
+     final_date = ''
+     ): Promise<TotalFinesCountInterface | Error> => {
 
-export type TotalFinesCount = {
-     data: FineDetails[];
-     totalCount: number;
-}
-
-const getAllFines = async (page = 1, plateFilter = ''): Promise<TotalFinesCount | Error> => {
-     const url = `/multas?page=${page}&_limit=15&placa_like=${plateFilter}`
-     // const url = `/multas`
+     const url = `/multas?page=${page}&_limit=15&placa_like=${plateFilter}&_dataInfracao=${initial_date}&_dataFinal=${final_date}`
 
      try {
           const { data, headers } = await instanceAxios.get(url)
@@ -62,7 +29,7 @@ const getAllFines = async (page = 1, plateFilter = ''): Promise<TotalFinesCount 
      }
 }
 
-const getFinesById = async (id: string):Promise<FineDetails | Error> => {
+const getFinesById = async (id: string):Promise<FineInterface | Error> => {
      const url = `/multas/:id`
 
      try {
@@ -81,6 +48,6 @@ const getFinesById = async (id: string):Promise<FineDetails | Error> => {
 }
 
 export const FinesServices = {
-     getAllFines,
+     getAllFinesByTime,
      getFinesById
 }
