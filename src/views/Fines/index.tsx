@@ -13,6 +13,7 @@ import ToastSnackbar from '../../api/interceptors/Toast';
 import DataTable from '../../components/SharedTable'
 
 import { Dayjs } from 'dayjs';
+import 'dayjs/locale/pt-br';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -31,7 +32,7 @@ const Fines: React.FC = () => {
 
   const [initialDatePickerValue, setInitialDatePickerValue] = useState<Dayjs | null>(null);
   const [finalDatePickerValue, setFinalDatePickerValue] = useState<Dayjs | null>(null);
-
+  const locale = 'pt-br'
 
 
   const search = useMemo(( ) => {
@@ -82,7 +83,8 @@ const Fines: React.FC = () => {
         <div className='flex flex-row gap-3'>
           <Button variant='contained'>Últimos 3 meses</Button>
           <Button variant='outlined'>Últimos 6 meses</Button>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
+
+          <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={locale}>
             <DatePicker
               label="Data de Início"
               value={initialDatePickerValue}
@@ -104,6 +106,7 @@ const Fines: React.FC = () => {
               )}
             />
           </LocalizationProvider>
+          <Button variant='outlined'>Buscar</Button>
         </div>
       </div>
       <DataTable rows={rows} isLoading={isLoading} totalCount={totalCount}/>
