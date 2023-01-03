@@ -1,13 +1,13 @@
 import {instanceAxios} from '../axiosConfig'
 
-import { FineInterface, TotalFinesCountInterface } from '../../@types'
+import { IFine, ITotalFinesCount } from '../../@types'
 
 const getAllFinesByTime = async (
      page = 1, 
      plateFilter = '', 
      initial_date = '',
      final_date = ''
-     ): Promise<TotalFinesCountInterface | Error> => {
+     ): Promise<ITotalFinesCount | Error> => {
 
      const url = `/multas?page=${page}&_limit=15&placa_like=${plateFilter}&_dataInfracao=${initial_date}&_dataFinal=${final_date}`
 
@@ -27,7 +27,7 @@ const getAllFinesByTime = async (
           return new Error(`${error}`)
      }
 }
-const getFinesById = async (id: string):Promise<FineInterface | Error> => {
+const getFinesById = async (id: string):Promise<IFine | Error> => {
      const url = `/multas/:id`
 
      try {

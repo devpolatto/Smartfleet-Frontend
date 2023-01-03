@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 
 import { Button, Stack, TextField } from '@mui/material';
 
-import { FineInterface } from '../../@types'
+import { IFine } from '../../@types'
 import { FinesServices } from '../../api/services/FinesService'
 
 import { useDebounce } from '../../Hooks/useDebounce';
@@ -22,7 +22,7 @@ const Fines: React.FC = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const { debounce } = useDebounce(1000, false);
-  const [rows, setRows] = useState<FineInterface[]>([])
+  const [rows, setRows] = useState<IFine[]>([])
   const [totalCount, setTotalCount] = useState(0)
 
   const [isLoading, setIsLoading] = useState(true)
