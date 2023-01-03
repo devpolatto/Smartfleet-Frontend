@@ -51,9 +51,9 @@ const links = [
 
 const SideNav: React.FC = () => {
   return(
-    <div className='grid-sidenav relative text-center  bg-gradient-to-b from-[#29238C] to-[#46429D]'>
+    <div className='grid-sidenav py-4 flex flex-col justify-between bg-gradient-to-b from-[#29238C] to-[#46429D]'>
 
-      <div className=' flex flex-col items-center gap-2 absolute top-14'>
+      <div className=' flex flex-col items-center gap-2 top-14'>
         {links.map((link, index) => {
           return (
             <Link to={link.path} key={index}>
@@ -66,25 +66,11 @@ const SideNav: React.FC = () => {
         })}
       </div>
       
-    <div className=' absolute bottom-0 flex flex-col gap-1 items-center'>
-    
-      <div className='w-[59px] border'></div>
-    
-        <div className='flex flex-col items-center w-[68px] h-[62px] mb-1 text-white justify-center'> 
-          <SettingsRoundedIcon sx={{ fontSize: 24 }}/>
-          <p className= 'text-[10px]'></p>
-        </div> 
-
-      </div>
-
-      <div className='w-[59px] border'></div>
-  
       <div className='flex flex-col items-center w-[68px] h-[62px]  text-white justify-center'> 
         <SettingsRoundedIcon sx={{ fontSize: 24 }}/>
         <p className= 'text-[10px]'></p>
-        </div> 
+      </div> 
     </div>
-  </div>
   )
 }
 
