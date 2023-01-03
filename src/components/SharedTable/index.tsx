@@ -9,7 +9,7 @@ import {
 
 import Pagination from "@mui/material/Pagination"
 
-import { finesColumns } from './Columns'
+import { finesColumns } from '../../resources/Columns'
 
 export function CustomPagination() {
      const apiRef = useGridApiContext();
