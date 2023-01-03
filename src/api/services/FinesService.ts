@@ -9,7 +9,7 @@ const getAllFinesByTime = async (
      final_date = ''
      ): Promise<TotalFinesCountInterface | Error> => {
 
-     const url = `/multa?page=${page}&_limit=15&placa_like=${plateFilter}&_dataInfracao=${initial_date}&_dataFinal=${final_date}`
+     const url = `/multas?page=${page}&_limit=15&placa_like=${plateFilter}&_dataInfracao=${initial_date}&_dataFinal=${final_date}`
 
      try {
           const { data, headers } = await instanceAxios.get(url)
