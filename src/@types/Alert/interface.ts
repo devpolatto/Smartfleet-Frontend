@@ -1,6 +1,6 @@
 export interface AlertProps {
      statusOpen: boolean;
-     title: string | null;
+     title?: string | null;
      message: string;
      severity: 'error' | 'warning' | 'info' | 'success'
      vertical: 'top' | 'bottom';

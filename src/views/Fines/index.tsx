@@ -1,14 +1,14 @@
 import React, {useEffect, useState, useMemo} from 'react'
 import { useSearchParams } from 'react-router-dom'
 
-import { Button, TextField } from '@mui/material';
+import { Button, Stack, TextField } from '@mui/material';
 
 import { FineInterface } from '../../@types'
 import { FinesServices } from '../../api/services/FinesService'
 
 import { useDebounce } from '../../Hooks/useDebounce';
 
-import ToastSnackbar from '../../api/interceptors/Toast';
+import {CustomAlert} from '../../components/Alert'
 
 import DataTable from '../../components/SharedTable'
 
@@ -27,13 +27,26 @@ const Fines: React.FC = () => {
 
   const [isLoading, setIsLoading] = useState(true)
 
-  const [openToast, setOpenToast] = useState(false)
-  const [messageOnToast, setMessageOnToast] = useState('')
+  const [openAlert, setOpenAlert] = useState(false)
+  const [messageAlert, setMessageAlert] = useState({
+    title: 'Error',
+    message: ''
+  })
 
   const [initialDatePickerValue, setInitialDatePickerValue] = useState<Dayjs | null>(null);
   const [finalDatePickerValue, setFinalDatePickerValue] = useState<Dayjs | null>(null);
   const locale = 'pt-br'
 
+  function convertDate(date: Dayjs | string) {
+    const dateToString = date.toString()
+    const newDate = dateToString.split('/').reverse().join('-');;
+    console.log(newDate)
+    return newDate;
+  }
+
+  const handleCloseAlert = () => {
+    setOpenAlert(false);
+  };
 
   const search = useMemo(( ) => {
     return searchParams.get('search' ) || '';
@@ -47,8 +60,9 @@ const Fines: React.FC = () => {
       .then(response => {
         setIsLoading(false)
         if(response instanceof Error) {
-          setOpenToast(true)
-          setMessageOnToast(`${response.message} - HTTP code ${response.name} `)
+          setMessageAlert({...messageAlert, message: response.message})
+          setOpenAlert(true)
+          console.log(response)
           return;
         } else {
           setRows(response.data)
@@ -62,28 +76,35 @@ const Fines: React.FC = () => {
   return (
 
     <div className='grid-content-page'>
-      {
-        openToast ? (
-          <ToastSnackbar setOpen={openToast} message={messageOnToast}/>
-        ) : ''
-      }
+      <CustomAlert 
+      statusOpen={openAlert}
+      vertical={'top'}
+      horizontal={'center'}
+      vairiant={'filled'}
+      message={messageAlert.message}
+      severity={'error'}
+      handleClose={handleCloseAlert}
+      />
       <div className='w-full h-[200px] flex flex-row justify-between'>
         <div>
           <Button variant='contained'>Dashboard</Button>
         </div>
         <div>Grafico</div>
       </div>
-      <div className='flex flw-row gap-10 mb-3'>
+      <div id='toolBar' className='flex flw-row gap-4 mb-3'>
         <TextField
           label="Pesquisar por placa"
           type="search"
           value={search}
           onChange={text => setSearchParams({search: text.target.value}, {replace: false})}
         />
-        <div className='flex flex-row gap-3'>
-          <Button variant='contained'>Últimos 3 meses</Button>
-          <Button variant='outlined'>Últimos 6 meses</Button>
+        <div className='flex w-full flex-row justify-between'>
+          <Stack direction={'row'} className='gap-4'>
+            <Button variant='contained' disableElevation>Últimos 3 meses</Button>
+            <Button variant='outlined' disableElevation>Últimos 6 meses</Button>
+          </Stack>
 
+          <Stack direction={'row'} className='gap-2'>
           <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={locale}>
             <DatePicker
               label="Data de Início"
@@ -106,7 +127,13 @@ const Fines: React.FC = () => {
               )}
             />
           </LocalizationProvider>
-          <Button variant='outlined'>Buscar</Button>
+          <Button 
+            variant='contained'
+            // onClick={() => searchByIntervalTime(initialDatePickerValue?.format('YYYY-MM-DD').toString(),finalDatePickerValue.format('YYYY-MM-DD').toString())}
+            >
+            Buscar
+          </Button>
+          </Stack>
         </div>
       </div>
       <DataTable rows={rows} isLoading={isLoading} totalCount={totalCount}/>
