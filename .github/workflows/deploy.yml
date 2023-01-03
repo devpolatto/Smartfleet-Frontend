@@ -1,9 +1,9 @@
 on:
   push:
-    branches: [development]
+    branches: [master]
   pull_request_review:
     types: [submite]
-    branches: [development]
+    branches: [master]
     
 jobs:
   CI:
