@@ -13,7 +13,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'background-primary': '#F2F5FE'
+        'background-primary': '#F2F5FE',
+        'sidenav': '#0D1520',
+        'header': '#121927'
       }
     },
   },
