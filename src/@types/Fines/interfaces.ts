@@ -1,4 +1,4 @@
-export interface FineInterface {
+export interface IFine {
      id: string;
      status: string;
      dataInfracao: string;
@@ -30,7 +30,7 @@ export interface FineInterface {
      aiipmulta: string; 
 }
 
-export type TotalFinesCountInterface = {
-     data: FineInterface[];
+export type ITotalFinesCount = {
+     data: IFine[];
      totalCount: number;
 }

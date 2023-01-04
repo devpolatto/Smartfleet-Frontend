@@ -1,6 +1,4 @@
-import * as React from 'react';
 import { GridColDef} from '@mui/x-data-grid';
-
 
 export const finesColumns: GridColDef[] = [
      { field: 'id', headerName: 'ID', width: 80, hide: true, align: 'right' },

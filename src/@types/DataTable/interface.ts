@@ -1,16 +1,16 @@
 export type Order = 'asc' | 'desc';
-import { Fine } from '../../api/services/FinesService'
+import { IFine } from '../'
 
-export interface HeadColumn {
+export interface IHeadColumn {
      disablePadding: boolean;
-     id: keyof Fine;
+     id: keyof IFine;
      label: string;
      numeric: boolean;
 }
 
-export interface EnhancedTableProps {
+export interface IEnhancedTableProps {
      numSelected: number;
-     onRequestSort: (event: React.MouseEvent<unknown>, property: keyof Fine) => void;
+     onRequestSort: (event: React.MouseEvent<unknown>, property: keyof IFine) => void;
      onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
      order: Order;
      orderBy: string;
