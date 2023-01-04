@@ -1,9 +1,10 @@
-import React, {useEffect, useState, useMemo} from 'react'
+import React, {useEffect, useState, useMemo, useContext} from 'react'
 import { useSearchParams } from 'react-router-dom'
+
+import { FineContext } from '../../context'
 
 import { Button, Stack, TextField } from '@mui/material';
 
-import { IFine } from '../../@types'
 import { FinesServices } from '../../api/services/FinesService'
 
 import { useDebounce } from '../../Hooks/useDebounce';
@@ -19,11 +20,15 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 const Fines: React.FC = () => {
+  const {
+    rows, 
+    setRows,
+    totalCount,
+    setTotalCount
+  } = useContext(FineContext)
 
   const [searchParams, setSearchParams] = useSearchParams();
   const { debounce } = useDebounce(1000, false);
-  const [rows, setRows] = useState<IFine[]>([])
-  const [totalCount, setTotalCount] = useState(0)
 
   const [isLoading, setIsLoading] = useState(true)
 
@@ -65,8 +70,8 @@ const Fines: React.FC = () => {
           console.log(response)
           return;
         } else {
-          setRows(response.data)
-          setTotalCount(response.totalCount)
+          setRows?.(response.data)
+          setTotalCount?.(response.totalCount)
         }
       })
     })
