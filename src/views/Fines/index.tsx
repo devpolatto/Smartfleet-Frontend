@@ -29,6 +29,9 @@ const Fines: React.FC = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const { debounce } = useDebounce(1000, false);
+  const [ timeDefault, setTimeDefault ] = useState(3)
+
+  const [stateButton, setStateButton] = useState()
 
   const [isLoading, setIsLoading] = useState(true)
 
@@ -57,64 +60,25 @@ const Fines: React.FC = () => {
     return searchParams.get('search' ) || '';
   }, [searchParams]);
 
-  function getDate1(){
-    const date = dayjs().format('YYYY-MM-DD')
-    const date2 = dayjs().subtract(1, 'M').format('YYYY-MM-DD')
-
-    console.log(date)
-    console.log(date2)
-  }
-
-  function getDateDefault(page: number, initialData: string, subtractMonth?: number, finalDate?: string) {
-
-    let dateSubtract = ''
-
-    if(subtractMonth) {
-      dateSubtract = dayjs().subtract(subtractMonth, 'M').format('YYYY-MM-DD') // subtract current date
-    }
-
-    debounce(() => {
-      FinesServices.getAllFinesByTime(page, search, initialData, finalDate)
-      // 2022-02-02/2022-04-01
-      .then(response => {
-        setIsLoading(false)
-        if(response instanceof Error) {
-          setMessageAlert({...messageAlert, message: response.message})
-          setOpenAlert(true)
-          console.log(response)
-          return;
-        } else {
-          setRows?.(response.data)
-          setTotalCount?.(response.totalCount)
-        }
-      })
-    })
-  }
-
   useEffect(( ) => {
     setIsLoading(true)
 
-    // const date = dayjs().format('YYYY-MM-DD') // date today
-
-    // getDateDefault(1, '2022-02-02', 0, '2022-04-01')
-
     debounce(() => {
-      FinesServices.getAllFinesByTime(1, search)
+      FinesServices.getAllFinesByTime(1, search, timeDefault)
       .then(response => {
         setIsLoading(false)
         if(response instanceof Error) {
           setMessageAlert({...messageAlert, message: response.message})
           setOpenAlert(true)
-          console.log(response)
           return;
         } else {
           setRows?.(response.data)
-          setTotalCount?.(response.totalCount)
+          setTotalCount?.(response.data.length)
         }
       })
     })
 
-  }, [search])
+  }, [search, timeDefault])
 
   return (
 
@@ -143,8 +107,20 @@ const Fines: React.FC = () => {
         />
         <div className='flex w-full flex-row justify-between'>
           <Stack direction={'row'} className='gap-4'>
-            <Button variant='contained' disableElevation>Últimos 3 meses</Button>
-            <Button variant='outlined' disableElevation>Últimos 6 meses</Button>
+            <Button 
+              variant='contained' 
+              disableElevation
+              onClick={() => setTimeDefault(3)}
+            >
+            Últimos 3 meses
+            </Button>
+            <Button 
+              variant='outlined' 
+              disableElevation
+              onClick={() => setTimeDefault(6)}
+              >
+              Últimos 6 meses
+            </Button>
           </Stack>
 
           <Stack direction={'row'} className='gap-2'>

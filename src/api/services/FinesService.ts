@@ -2,17 +2,23 @@ import {instanceAxios} from '../axiosConfig'
 
 import { IFine, ITotalFinesCount } from '../../@types'
 
+import dayjs, { Dayjs } from 'dayjs';
+import 'dayjs/locale/pt-br';
+
 const getAllFinesByTime = async (
      page = 1, 
      plateFilter = '', 
-     initial_date = '',
-     final_date = ''
+     time: number
      ): Promise<ITotalFinesCount | Error> => {
 
-     const url = `/multas?page=${page}&_limit=15&placa_like=${plateFilter}&_dataInfracao=${initial_date}&_dataFinal=${final_date}`
-     // const url = `/multas/listar-periodo/2022-02-02/2022-04-01`/
-     // const url = `/multas/listar-periodo/${initial_date}/${final_date}?page=${page}&_limit=15&placa_like=${plateFilter}`
+     const date = dayjs().format('YYYY-MM-DD') // date today
 
+     const dateSubtract = dayjs().subtract(time, 'M').format('YYYY-MM-DD') // subtract current date  
+
+     const url = `/multas/listar-periodo/${dateSubtract}/${date}?&_${plateFilter}`
+
+     console.log(url)
+     
      try {
           const { data, headers } = await instanceAxios.get(url)
 
@@ -23,7 +29,6 @@ const getAllFinesByTime = async (
                     totalCount: Number(headers['x-total-count'] || 10)
                }
           }
-
           return new Error('Erro ao buscar os dados')
 
      } catch (error) {
