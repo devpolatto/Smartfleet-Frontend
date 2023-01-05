@@ -13,7 +13,7 @@ import {CustomAlert} from '../../components/Alert'
 
 import DataTable from '../../components/SharedTable'
 
-import { Dayjs } from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/pt-br';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -29,6 +29,9 @@ const Fines: React.FC = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const { debounce } = useDebounce(1000, false);
+  const [ timeDefault, setTimeDefault ] = useState(3)
+
+  const [stateButton, setStateButton] = useState()
 
   const [isLoading, setIsLoading] = useState(true)
 
@@ -61,22 +64,21 @@ const Fines: React.FC = () => {
     setIsLoading(true)
 
     debounce(() => {
-      FinesServices.getAllFinesByTime(1, search)
+      FinesServices.getAllFinesByTime(1, search, timeDefault)
       .then(response => {
         setIsLoading(false)
         if(response instanceof Error) {
           setMessageAlert({...messageAlert, message: response.message})
           setOpenAlert(true)
-          console.log(response)
           return;
         } else {
           setRows?.(response.data)
-          setTotalCount?.(response.totalCount)
+          setTotalCount?.(response.data.length)
         }
       })
     })
 
-  }, [search])
+  }, [search, timeDefault])
 
   return (
 
@@ -105,8 +107,20 @@ const Fines: React.FC = () => {
         />
         <div className='flex w-full flex-row justify-between'>
           <Stack direction={'row'} className='gap-4'>
-            <Button variant='contained' disableElevation>Últimos 3 meses</Button>
-            <Button variant='outlined' disableElevation>Últimos 6 meses</Button>
+            <Button 
+              variant='contained' 
+              disableElevation
+              onClick={() => setTimeDefault(3)}
+            >
+            Últimos 3 meses
+            </Button>
+            <Button 
+              variant='outlined' 
+              disableElevation
+              onClick={() => setTimeDefault(6)}
+              >
+              Últimos 6 meses
+            </Button>
           </Stack>
 
           <Stack direction={'row'} className='gap-2'>
@@ -135,7 +149,9 @@ const Fines: React.FC = () => {
           <Button 
             variant='contained'
             // onClick={() => searchByIntervalTime(initialDatePickerValue?.format('YYYY-MM-DD').toString(),finalDatePickerValue.format('YYYY-MM-DD').toString())}
+            // onClick={() => getDate()}
             >
+
             Buscar
           </Button>
           </Stack>
