@@ -13,7 +13,7 @@ import {CustomAlert} from '../../components/Alert'
 
 import DataTable from '../../components/SharedTable'
 
-import { Dayjs } from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/pt-br';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -57,8 +57,46 @@ const Fines: React.FC = () => {
     return searchParams.get('search' ) || '';
   }, [searchParams]);
 
+  function getDate1(){
+    const date = dayjs().format('YYYY-MM-DD')
+    const date2 = dayjs().subtract(1, 'M').format('YYYY-MM-DD')
+
+    console.log(date)
+    console.log(date2)
+  }
+
+  function getDateDefault(page: number, initialData: string, subtractMonth?: number, finalDate?: string) {
+
+    let dateSubtract = ''
+
+    if(subtractMonth) {
+      dateSubtract = dayjs().subtract(subtractMonth, 'M').format('YYYY-MM-DD') // subtract current date
+    }
+
+    debounce(() => {
+      FinesServices.getAllFinesByTime(page, search, initialData, finalDate)
+      // 2022-02-02/2022-04-01
+      .then(response => {
+        setIsLoading(false)
+        if(response instanceof Error) {
+          setMessageAlert({...messageAlert, message: response.message})
+          setOpenAlert(true)
+          console.log(response)
+          return;
+        } else {
+          setRows?.(response.data)
+          setTotalCount?.(response.totalCount)
+        }
+      })
+    })
+  }
+
   useEffect(( ) => {
     setIsLoading(true)
+
+    // const date = dayjs().format('YYYY-MM-DD') // date today
+
+    // getDateDefault(1, '2022-02-02', 0, '2022-04-01')
 
     debounce(() => {
       FinesServices.getAllFinesByTime(1, search)
@@ -135,7 +173,9 @@ const Fines: React.FC = () => {
           <Button 
             variant='contained'
             // onClick={() => searchByIntervalTime(initialDatePickerValue?.format('YYYY-MM-DD').toString(),finalDatePickerValue.format('YYYY-MM-DD').toString())}
+            // onClick={() => getDate()}
             >
+
             Buscar
           </Button>
           </Stack>
