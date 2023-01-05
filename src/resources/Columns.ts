@@ -10,4 +10,4 @@ export const finesColumns: GridColDef[] = [
      { field: 'cidade', headerName: 'Cidade', width: 130, align: 'left', headerAlign: 'left' },
      { field: 'valorBoleto', headerName: 'Valor do Boleto', width: 130, align: 'left', headerAlign: 'left'},
      { field: 'vencimentoBoleto', headerName: 'Data de Vencimento', width: 180, align: 'left', headerAlign: 'right' },
- ];
+];

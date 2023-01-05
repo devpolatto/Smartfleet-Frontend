@@ -9,7 +9,7 @@ const getAllFinesByTime = async (
      page = 1, 
      plateFilter = '', 
      time: number
-     ): Promise<ITotalFinesCount | Error> => {
+     ): Promise<ITotalFinesCount | Error>     => {
 
      const date = dayjs().format('YYYY-MM-DD') // date today
 
