@@ -7,7 +7,6 @@ import 'dayjs/locale/pt-br';
 
 const getAllFinesByTime = async (
      page = 1, 
-     plateFilter = '', 
      time: number
      ): Promise<ITotalFinesCount | Error>     => {
 
@@ -15,7 +14,7 @@ const getAllFinesByTime = async (
 
      const dateSubtract = dayjs().subtract(time, 'M').format('YYYY-MM-DD') // subtract current date  
 
-     const url = `/multas/listar-periodo/${dateSubtract}/${date}?&_${plateFilter}`
+     const url = `/multas/listar-periodo/${dateSubtract}/${date}`
 
      console.log(url)
      

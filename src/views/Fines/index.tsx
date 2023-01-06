@@ -60,11 +60,14 @@ const Fines: React.FC = () => {
     return searchParams.get('search' ) || '';
   }, [searchParams]);
 
+  
+  const rowsFilter = rows?.filter(row => row.placa.includes(search))
+
   useEffect(( ) => {
     setIsLoading(true)
 
     debounce(() => {
-      FinesServices.getAllFinesByTime(1, search, timeDefault)
+      FinesServices.getAllFinesByTime(1, timeDefault)
       .then(response => {
         setIsLoading(false)
         if(response instanceof Error) {
@@ -73,7 +76,12 @@ const Fines: React.FC = () => {
           return;
         } else {
           setRows?.(response.data)
-          setTotalCount?.(response.data.length)
+          if(search.length < 0){
+            setTotalCount?.(response.data.length)
+          } else {
+            setTotalCount?.(rowsFilter?.length || 0)
+          }
+          
         }
       })
     })
@@ -157,7 +165,7 @@ const Fines: React.FC = () => {
           </Stack>
         </div>
       </div>
-      <DataTable rows={rows} isLoading={isLoading} totalCount={totalCount}/>
+      <DataTable rows={rowsFilter} isLoading={isLoading} totalCount={totalCount}/>
     </div>
   )
 }
