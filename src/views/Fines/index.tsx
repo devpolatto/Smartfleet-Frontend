@@ -76,14 +76,17 @@ const Fines: React.FC = () => {
           return;
         } else {
           setRows?.(response.data)
-          setTotalCount?.(response.data.length)
+          if(search.length < 0){
+            setTotalCount?.(response.data.length)
+          } else {
+            setTotalCount?.(rowsFilter?.length || 0)
+          }
+          
         }
       })
     })
 
   }, [search, timeDefault])
-
-  console.log(rowsFilter)
 
   return (
 
