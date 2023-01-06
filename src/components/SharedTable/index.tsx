@@ -42,8 +42,8 @@ export default function DataTable({rows, totalCount, isLoading}: DataTableProps)
                   key={rows.placa}
                   rows={rows}
                   columns={finesColumns}
-                  pageSize={10}
-                  rowsPerPageOptions={[10]}
+                  pageSize={20}
+                  rowsPerPageOptions={[20]}
                   checkboxSelection
                   rowCount={totalCount}
                   loading={isLoading}

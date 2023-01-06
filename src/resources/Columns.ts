@@ -28,5 +28,4 @@ export const finesColumns: GridColDef[] = [
      { field: 'datahoraInfracaoUTC', headerName: 'Data/Hora (Infração)', width: 130, hide: true, align: 'left', headerAlign: 'left' },
      { field: 'nicAutoInfracaoOriginario', headerName: 'NIC - Auto Infração Originário', width: 130, hide: true, align: 'left', headerAlign: 'left' },
      { field: 'aiipmulta', headerName: 'AIIP - Multa', width: 130, hide: true, align: 'left', headerAlign: 'left' },
- 
     ];
