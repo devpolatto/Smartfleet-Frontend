@@ -35,17 +35,25 @@ const getAllFinesByTime = async (
           return new Error(`${error}`)
      }
 }
-const getFinesById = async (id: string):Promise<IFine | Error> => {
-     const url = `/multas/:id`
+const getFinesByTimeCustom = async (
+          initialDate: string,
+          finalDate: string
+     ):Promise<ITotalFinesCount | Error> => {
+
+     const url = `/multas/listar-periodo/${initialDate}/${finalDate}`
 
      try {
           const { data, headers } = await instanceAxios.get(url)
           
-          if (id) {
-               return data
+          if (data) {
+               console.log(data)
+               console.log(url)
+               return {
+                    data,
+                    totalCount: Number(headers['x-total-count'] || 10)
+               }
           }
-
-          return new Error('Erro ao buscar a multa')
+          return new Error('Erro ao buscar os dados')
 
      } catch (error) {
           console.log(error)
@@ -55,5 +63,5 @@ const getFinesById = async (id: string):Promise<IFine | Error> => {
 
 export const FinesServices = {
      getAllFinesByTime,
-     getFinesById
+     getFinesByTimeCustom
 }

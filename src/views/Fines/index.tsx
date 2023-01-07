@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useMemo, useContext} from 'react'
+import React, {useEffect, useState, useMemo, useContext, useRef, useCallback} from 'react'
 import { useSearchParams } from 'react-router-dom'
 
 import { FineContext } from '../../context'
@@ -13,7 +13,7 @@ import {CustomAlert} from '../../components/Alert'
 
 import DataTable from '../../components/SharedTable'
 
-import dayjs, { Dayjs } from 'dayjs';
+import { Dayjs } from 'dayjs';
 import 'dayjs/locale/pt-br';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -31,8 +31,6 @@ const Fines: React.FC = () => {
   const { debounce } = useDebounce(1000, false);
   const [ timeDefault, setTimeDefault ] = useState(3)
 
-  const [stateButton, setStateButton] = useState()
-
   const [isLoading, setIsLoading] = useState(true)
 
   const [openAlert, setOpenAlert] = useState(false)
@@ -43,14 +41,8 @@ const Fines: React.FC = () => {
 
   const [initialDatePickerValue, setInitialDatePickerValue] = useState<Dayjs | null>(null);
   const [finalDatePickerValue, setFinalDatePickerValue] = useState<Dayjs | null>(null);
+  
   const locale = 'pt-br'
-
-  function convertDate(date: Dayjs | string) {
-    const dateToString = date.toString()
-    const newDate = dateToString.split('/').reverse().join('-');;
-    console.log(newDate)
-    return newDate;
-  }
 
   const handleCloseAlert = () => {
     setOpenAlert(false);
@@ -59,9 +51,33 @@ const Fines: React.FC = () => {
   const search = useMemo(( ) => {
     return searchParams.get('search' ) || '';
   }, [searchParams]);
-
   
   const rowsFilter = rows?.filter(row => row.placa.includes(search))
+
+  function getDataByTimeCustomTime(initialDate: string = '', finalDate: string = '') {
+    
+    setIsLoading(true)
+
+    debounce(() => {
+      FinesServices.getFinesByTimeCustom(initialDate, finalDate)
+        .then(response => {
+          setIsLoading(false)
+          if(response instanceof Error) {
+            setMessageAlert({...messageAlert, message: response.message})
+            setOpenAlert(true)
+            return;
+          } else {
+            console.log(response)
+            setRows?.(response.data)
+            if(search.length < 0){
+              setTotalCount?.(response.data.length)
+            } else {
+              setTotalCount?.(rowsFilter?.length || 0)
+            }
+          }
+        })
+    })
+  }
 
   useEffect(( ) => {
     setIsLoading(true)
@@ -134,32 +150,27 @@ const Fines: React.FC = () => {
           <Stack direction={'row'} className='gap-2'>
           <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={locale}>
             <DatePicker
-              label="Data de Início"
+              label="Data mais antiga"
               value={initialDatePickerValue}
-              onChange={(newDate) => {
-                setInitialDatePickerValue(newDate);
-              }}
-              renderInput={(params) => (
-                <TextField {...params} />
-              )}
+              onChange={(newValue) => {setInitialDatePickerValue(newValue)}}
+              renderInput={(params) => (<TextField {...params} />)}
             />
             <DatePicker
-              label="Data Final"
+              label="Data mais próxima"
               value={finalDatePickerValue}
-              onChange={(newDate) => {
-                setFinalDatePickerValue(newDate);
-              }}
-              renderInput={(params) => (
-                <TextField {...params} />
-              )}
+              onChange={(newValue) => {setFinalDatePickerValue(newValue)}}
+              renderInput={(params) => <TextField {...params} />}
             />
           </LocalizationProvider>
           <Button 
             variant='contained'
-            // onClick={() => searchByIntervalTime(initialDatePickerValue?.format('YYYY-MM-DD').toString(),finalDatePickerValue.format('YYYY-MM-DD').toString())}
-            // onClick={() => getDate()}
+            onClick={() => {
+              getDataByTimeCustomTime(
+                initialDatePickerValue?.format('YYYY-MM-DD'),
+                finalDatePickerValue?.format('YYYY-MM-DD')
+              )
+            }}
             >
-
             Buscar
           </Button>
           </Stack>
