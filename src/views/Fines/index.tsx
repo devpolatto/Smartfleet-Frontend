@@ -69,11 +69,9 @@ const Fines: React.FC = () => {
           } else {
             console.log(response)
             setRows?.(response.data)
-            if(search.length < 0){
-              setTotalCount?.(response.data.length)
-            } else {
-              setTotalCount?.(rowsFilter?.length || 0)
-            }
+            search === '' 
+              ? setTotalCount?.(response.data.length)
+              : setTotalCount?.(rowsFilter?.length || 0)
           }
         })
     })
@@ -92,12 +90,9 @@ const Fines: React.FC = () => {
           return;
         } else {
           setRows?.(response.data)
-          if(search.length < 0){
-            setTotalCount?.(response.data.length)
-          } else {
-            setTotalCount?.(rowsFilter?.length || 0)
-          }
-          
+          search === '' 
+            ? setTotalCount?.(response.data.length)
+            : setTotalCount?.(rowsFilter?.length || 0)
         }
       })
     })
