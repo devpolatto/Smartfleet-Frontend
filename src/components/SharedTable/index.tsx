@@ -155,7 +155,6 @@ export default function DataTable({rows, totalCount, isLoading}: DataTableProps)
                     loading={isLoading}
                     disableSelectionOnClick
                     onRowDoubleClick={(row) => saveData(row.row)}
-                    // onRowDoubleClick={(data) => console.log(data.row)}
                     sx={{cursor: "pointer", height: 600}}
                     components={{
                          Pagination: CustomPagination
